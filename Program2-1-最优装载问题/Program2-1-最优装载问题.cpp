@@ -2,10 +2,39 @@
 //
 
 #include <iostream>
-
+#include <algorithm>
+using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n";
+	int limit = 30;
+	int gross = 0;
+	int current = 0;
+	int quantity = 0;
+	cout << "请输入载重量 limit 及古董总数 gross:" << endl;
+	cin >> limit >> gross;
+	int antique[1024];
+	cout << "请输入每个古董的重量，用空格分开：" << endl;
+	for (int i = 0; i < gross; i++)
+	{
+		cin >> antique[i];
+	}
+	cout << antique << endl;
+	cout << (antique + gross) << endl;
+	sort(antique, antique + gross);
+	for (int i = 0; i < gross; i++)
+	{
+		int tmp = current + antique[i];
+		if (tmp <= limit)
+		{
+			current = tmp;
+			quantity += 1;
+			continue;
+		}
+		break;
+	}
+	cout << "可装载的古董最大数量为: ";
+	cout << quantity << endl;
+	return 0;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
